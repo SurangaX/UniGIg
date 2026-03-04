@@ -19,22 +19,15 @@ const connectionString = rawUrl
 const pool = new Pool({
   connectionString,
   ssl: { rejectUnauthorized: false },
-  min: 2,                        // pre-warm connections at startup
-  max: 10,                       // cap concurrent connections
-  idleTimeoutMillis: 30_000,     // release idle clients after 30 s
-  connectionTimeoutMillis: 5_000 // fail fast if DB is unreachable
+  max: 10,                        // cap concurrent connections
+  idleTimeoutMillis: 30_000,      // release idle clients after 30 s
+  connectionTimeoutMillis: 10_000 // wait up to 10 s for a connection
 });
 
+// Log pool errors but do NOT exit – let the request fail gracefully instead.
 pool.on('error', (err) => {
-  console.error('Unexpected error on idle client', err);
-  process.exit(-1);
+  console.error('Unexpected error on idle DB client:', err.message);
 });
-
-// Pre-warm the pool at startup so the first real request never waits for
-// a fresh TCP + SSL + auth handshake.
-pool.query('SELECT 1').catch((err) =>
-  console.warn('DB pre-warm failed (will retry on first request):', err.message)
-);
 
 module.exports = {
   /**
