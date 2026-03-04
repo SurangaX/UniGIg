@@ -162,5 +162,5 @@
   .steps { grid-template-columns: 1fr; gap: var(--sp-6); }
   .recent-jobs { padding-block: var(--sp-10); }
   .recent-jobs__header h2 { font-size: var(--fs-lg); }
-  .recent-jobs{ padding:10px; margin-top: 10px; }
+  .recent-jobs{ padding:10px;}
 }
