@@ -1,0 +1,51 @@
+/* ── pages/index.css ─── Landing page */
+.hero {
+  min-height: calc(100dvh - var(--header-h));
+  display: flex; align-items: center;
+  background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-accent) 100%);
+  color: #fff;
+  text-align: center;
+  padding-block: var(--sp-16);
+}
+.hero h1 { font-size: var(--fs-2xl); font-weight: 900; line-height: 1.15; }
+.hero p   { font-size: var(--fs-lg); opacity: .9; max-width: 540px; margin: var(--sp-4) auto var(--sp-8); }
+.hero__cta { display: flex; gap: var(--sp-4); justify-content: center; flex-wrap: wrap; }
+.hero .btn--outline { border-color: #fff; color: #fff; }
+.hero .btn--outline:hover { background: #fff; color: var(--clr-primary); }
+.hero .btn--surface { background: #fff; color: var(--clr-primary); }
+.hero .btn--surface:hover { background: rgba(255,255,255,.85); }
+
+.how-it-works { padding-block: var(--sp-16); }
+.how-it-works h2 { text-align: center; font-size: var(--fs-xl); margin-bottom: var(--sp-12); }
+
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: var(--sp-8); }
+.step { text-align: center; }
+.step__icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--clr-primary);
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto var(--sp-4);
+}
+.step h3 { font-size: var(--fs-md); margin-bottom: var(--sp-2); }
+.step p   { font-size: var(--fs-sm); color: var(--clr-text-muted); }
+
+/* ── Mobile responsive ───────────────────────────────────────── */
+@media (max-width: 600px) {
+  .hero {
+    min-height: auto;
+    padding-block: var(--sp-12);
+  }
+  .hero p { font-size: var(--fs-base); }
+  .hero__cta {
+    flex-direction: column;
+    align-items: stretch;
+    padding-inline: var(--sp-6);
+  }
+  .hero__cta .btn { width: 100%; justify-content: center; }
+  .how-it-works { padding-block: var(--sp-8); }
+  .how-it-works h2 { font-size: var(--fs-lg); margin-bottom: var(--sp-8); }
+  .steps { grid-template-columns: 1fr; gap: var(--sp-6); }
+}

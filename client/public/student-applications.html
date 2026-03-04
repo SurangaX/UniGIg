@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Applications – UniGig</title>
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/pages/dashboard.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main>
+    <div class="container">
+      <div class="dashboard-layout">
+
+        <aside class="dash-sidebar">
+          <div class="dash-sidebar__avatar">S</div>
+          <div class="dash-sidebar__role">Student</div>
+          <nav class="dash-nav" style="margin-top:var(--sp-6)">
+            <a href="/student-dashboard.html">Dashboard</a>
+            <a href="/student-applications.html" class="active">My Applications</a>
+            <a href="/student-profile.html">Edit Profile</a>
+            <a href="/jobs.html">Browse Jobs</a>
+          </nav>
+        </aside>
+
+        <div>
+          <h1 style="font-size:var(--fs-xl);font-weight:800;margin-bottom:var(--sp-6)">My Applications</h1>
+          <div id="apps-list">
+            <div class="skeleton" style="height:100px;margin-bottom:8px"></div>
+            <div class="skeleton" style="height:100px;margin-bottom:8px"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>&copy; 2026 UniGig &ndash; Built for students, by students.</p></div>
+  </footer>
+
+  <script type="module" src="/js/pages/student-applications.js"></script>
+</body>
+</html>

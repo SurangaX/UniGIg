@@ -1,0 +1,37 @@
+/* ── pages/review.css ─── Write/read review */
+.review-wrapper {
+  max-width: 600px; margin: var(--sp-12) auto;
+}
+.star-input { display: flex; gap: var(--sp-2); }
+.star-input label {
+  font-size: 2rem; cursor: pointer;
+  color: var(--clr-border);
+  transition: color var(--tr-fast);
+}
+.star-input input[type="radio"] { display: none; }
+.star-input label:has(~ label) { }
+/* Highlight selected and all before it */
+.star-input:has(input:checked) label { color: var(--clr-border); }
+.star-input input:checked ~ label,
+.star-input label:has(~ input:checked) { color: #f59e0b; }
+.star-input label:hover,
+.star-input label:hover ~ label { }
+/* Simpler JS-driven approach used instead */
+
+.review-card {
+  background: var(--clr-surface); border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md); padding: var(--sp-6); margin-bottom: var(--sp-4);
+}
+.review-card__header { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-3); }
+.review-card__author { font-weight: 600; }
+.review-card__date   { font-size: var(--fs-xs); color: var(--clr-text-muted); }
+.review-card__comment { font-size: var(--fs-sm); color: var(--clr-text-muted); }
+
+/* ── Mobile responsive ───────────────────────────────────────── */
+@media (max-width: 600px) {
+  .review-wrapper {
+    margin: var(--sp-6) auto;
+    padding-inline: var(--sp-2);
+  }
+  .star-input label { font-size: 2.25rem; }
+}

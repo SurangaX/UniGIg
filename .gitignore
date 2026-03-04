@@ -1,0 +1,20 @@
+# Dependencies – never commit these
+node_modules/
+server/node_modules/
+client/node_modules/
+
+# Environment variables – never commit real secrets
+.env
+server/.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
+build/

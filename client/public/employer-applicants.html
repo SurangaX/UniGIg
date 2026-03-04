@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Applicants – UniGig</title>
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/pages/dashboard.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main>
+    <div class="container">
+      <div class="dashboard-layout">
+
+        <aside class="dash-sidebar">
+          <div class="dash-sidebar__avatar">E</div>
+          <div class="dash-sidebar__role">Employer</div>
+          <nav class="dash-nav" style="margin-top:var(--sp-6)">
+            <a href="/employer-dashboard.html">Dashboard</a>
+            <a href="/employer-jobs.html">My Jobs</a>
+            <a href="/employer-new-job.html">Post a Job</a>
+          </nav>
+        </aside>
+
+        <div>
+          <div style="display:flex;align-items:center;gap:var(--sp-4);flex-wrap:wrap;margin-bottom:var(--sp-6)">
+            <div>
+              <h1 id="job-title" style="font-size:var(--fs-xl);font-weight:800"></h1>
+              <div style="display:flex;align-items:center;gap:var(--sp-3);margin-top:var(--sp-2)">
+                <span id="job-status" class="badge"></span>
+                <span id="app-count" class="text-muted" style="font-size:var(--fs-sm)"></span>
+              </div>
+            </div>
+            <a href="/employer-jobs.html" class="btn btn--ghost btn--sm" style="margin-left:auto">&larr; Back to Jobs</a>
+          </div>
+
+          <div id="applicants-list">
+            <div class="skeleton" style="height:100px;margin-bottom:8px"></div>
+            <div class="skeleton" style="height:100px;margin-bottom:8px"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>&copy; 2026 UniGig &ndash; Built for students, by students.</p></div>
+  </footer>
+
+  <script type="module" src="/js/pages/employer-applicants.js"></script>
+</body>
+</html>

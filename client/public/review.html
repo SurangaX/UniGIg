@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leave a Review – UniGig</title>
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/pages/review.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main>
+    <div class="container">
+      <div class="review-wrapper">
+
+        <div class="page-header">
+          <h1>Leave a Review ⭐</h1>
+          <p id="review-target" class="text-muted">Loading…</p>
+        </div>
+
+        <div class="card">
+          <div class="card__body">
+            <form id="review-form" class="flex-col gap-6" novalidate>
+
+              <!-- Star picker -->
+              <div class="form-group">
+                <label>Rating *</label>
+                <div class="star-input" id="star-picker" role="radiogroup" aria-label="Rating">
+                  <button type="button" class="star-btn" data-value="1" aria-label="1 star">☆</button>
+                  <button type="button" class="star-btn" data-value="2" aria-label="2 stars">☆</button>
+                  <button type="button" class="star-btn" data-value="3" aria-label="3 stars">☆</button>
+                  <button type="button" class="star-btn" data-value="4" aria-label="4 stars">☆</button>
+                  <button type="button" class="star-btn" data-value="5" aria-label="5 stars">☆</button>
+                </div>
+                <style>
+                  .star-btn {
+                    background: none; border: none; font-size: 2.2rem; cursor: pointer;
+                    color: var(--clr-border); padding: 0 2px;
+                    transition: color var(--tr-fast), transform var(--tr-fast);
+                  }
+                  .star-btn:hover { transform: scale(1.15); }
+                </style>
+              </div>
+
+              <div class="form-group">
+                <label for="comment">Comment (optional)</label>
+                <textarea id="comment" name="comment" rows="4"
+                          placeholder="Share your experience working with this person…"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--lg">Submit Review</button>
+            </form>
+          </div>
+        </div>
+
+        <p style="text-align:center;margin-top:var(--sp-4)">
+          <a href="/index.html" class="text-muted" style="font-size:var(--fs-sm)">← Back to home</a>
+        </p>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>&copy; 2026 UniGig &ndash; Built for students, by students.</p></div>
+  </footer>
+
+  <script type="module" src="/js/pages/review.js"></script>
+</body>
+</html>

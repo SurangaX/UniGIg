@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Detail – UniGig</title>
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/pages/job.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main>
+    <div class="container" id="job-content">
+
+      <div class="job-detail-grid">
+        <!-- Left: Details -->
+        <article>
+          <header class="job-detail__header">
+            <div class="job-detail__category" id="job-category"></div>
+            <h1 class="job-detail__title" id="job-title"></h1>
+            <p style="font-weight:600" id="job-employer"></p>
+            <div class="job-detail__meta">
+              <span id="job-location"></span>
+              <span id="job-schedule"></span>
+              <span id="job-posted"></span>
+              <span id="job-status" class="badge"></span>
+            </div>
+          </header>
+
+          <hr class="divider" />
+          <h2 style="font-size:var(--fs-md);margin-bottom:var(--sp-4)">Job Description</h2>
+          <div class="job-detail__description" id="job-description"></div>
+        </article>
+
+        <!-- Right: Apply card -->
+        <aside class="apply-card">
+          <div class="card">
+            <div class="card__body">
+              <div id="pay-display"></div>
+              <p id="job-pay" class="text-muted" style="font-size:var(--fs-sm)"></p>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:var(--sp-4)">
+            <div class="card__body">
+              <h3 style="margin-bottom:var(--sp-4)">Apply for this Job</h3>
+              <div id="apply-section">
+                <!-- Filled by JS -->
+                <div class="skeleton" style="height:40px;margin-bottom:8px"></div>
+                <div class="skeleton" style="height:40px"></div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div style="margin-top:var(--sp-6)">
+        <a href="/jobs.html" class="btn btn--ghost btn--sm">&larr; Back to Jobs</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>&copy; 2026 UniGig &ndash; Built for students, by students.</p></div>
+  </footer>
+
+  <script type="module" src="/js/pages/job.js"></script>
+</body>
+</html>

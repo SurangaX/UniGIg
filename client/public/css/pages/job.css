@@ -1,0 +1,37 @@
+/* ── pages/job.css ─── Single job detail page */
+.job-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--sp-8);
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .job-detail-grid { grid-template-columns: 1fr; }
+  /* Sidebar apply card no longer sticky on mobile */
+  .apply-card { position: static; }
+}
+
+@media (max-width: 480px) {
+  .job-detail__title { font-size: var(--fs-lg); }
+  .job-detail__meta { flex-direction: column; gap: var(--sp-2); }
+  .apply-card .card__body .btn { width: 100%; justify-content: center; }
+  .pay-display { font-size: var(--fs-lg); }
+}
+
+.job-detail__header { margin-bottom: var(--sp-6); }
+.job-detail__category {
+  font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--clr-primary); margin-bottom: var(--sp-2);
+}
+.job-detail__title { font-size: var(--fs-xl); font-weight: 800; margin-bottom: var(--sp-3); }
+.job-detail__meta {
+  display: flex; flex-wrap: wrap; gap: var(--sp-4);
+  color: var(--clr-text-muted); font-size: var(--fs-sm);
+}
+
+.job-detail__description { line-height: 1.75; white-space: pre-wrap; }
+
+.apply-card { position: sticky; top: calc(var(--header-h) + var(--sp-4)); }
+.apply-card .card__body { display: flex; flex-direction: column; gap: var(--sp-4); }
+.pay-display { font-size: var(--fs-xl); font-weight: 800; color: var(--clr-primary); }
+.pay-display span { font-size: var(--fs-sm); color: var(--clr-text-muted); font-weight: 400; }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employer Dashboard – UniGig</title>
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/pages/dashboard.css" />
+  <link rel="stylesheet" href="/css/pages/review.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main>
+    <div class="container">
+      <div class="dashboard-layout">
+
+        <!-- Sidebar -->
+        <aside class="dash-sidebar">
+          <div class="dash-sidebar__avatar" id="sidebar-avatar">E</div>
+          <div class="dash-sidebar__name" id="sidebar-name">Employer</div>
+          <div class="dash-sidebar__role">Employer</div>
+          <p class="text-muted text-center" style="font-size:var(--fs-xs)" id="sidebar-biz"></p>
+          <nav class="dash-nav" style="margin-top:var(--sp-6)">
+            <a href="/employer-dashboard.html" class="active">Dashboard</a>
+            <a href="/employer-jobs.html">My Jobs</a>
+            <a href="/employer-new-job.html">Post a Job</a>
+          </nav>
+        </aside>
+
+        <!-- Main -->
+        <div>
+          <h1 style="font-size:var(--fs-xl);font-weight:800;margin-bottom:var(--sp-6)">Employer Dashboard</h1>
+
+          <div class="stats-row mb-8">
+            <div class="stat-card">
+              <div class="stat-card__value" id="stat-jobs">—</div>
+              <div class="stat-card__label">Total Jobs</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__value" id="stat-open">—</div>
+              <div class="stat-card__label">Open</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__value" id="stat-apps">—</div>
+              <div class="stat-card__label">Applications</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__value" id="stat-rating">—</div>
+              <div class="stat-card__label">Avg. Rating</div>
+            </div>
+          </div>
+
+          <div class="dash-section">
+            <h2>
+              Recent Jobs
+              <a href="/employer-new-job.html" class="btn btn--primary btn--sm">+ Post Job</a>
+            </h2>
+            <div id="recent-jobs">
+              <div class="skeleton" style="height:72px;margin-bottom:8px"></div>
+              <div class="skeleton" style="height:72px;margin-bottom:8px"></div>
+            </div>
+          </div>
+
+          <div class="dash-section">
+            <h2>Reviews Received</h2>
+            <div id="reviews-list">
+              <div class="skeleton" style="height:80px;margin-bottom:8px"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>&copy; 2026 UniGig &ndash; Built for students, by students.</p></div>
+  </footer>
+
+  <script type="module" src="/js/pages/employer-dashboard.js"></script>
+</body>
+</html>

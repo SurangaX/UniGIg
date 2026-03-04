@@ -1,0 +1,8 @@
+[build]
+  publish = "client/public"
+
+# Redirect all routes to index.html for client-side navigation
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

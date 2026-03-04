@@ -1,0 +1,136 @@
+/* ── pages/auth.css ─── Login & Register pages */
+.auth-wrapper {
+  min-height: calc(100dvh - var(--header-h));
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--sp-8) var(--sp-4);
+}
+.auth-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--sp-8);
+  width: min(100%, 440px);
+}
+.auth-card h1 {
+  font-size: var(--fs-xl); font-weight: 800;
+  text-align: center; margin-bottom: var(--sp-2);
+}
+.auth-card .subtitle {
+  text-align: center; color: var(--clr-text-muted);
+  font-size: var(--fs-sm); margin-bottom: var(--sp-8);
+}
+.auth-form { display: flex; flex-direction: column; gap: var(--sp-4); }
+.auth-footer {
+  text-align: center; margin-top: var(--sp-6);
+  font-size: var(--fs-sm); color: var(--clr-text-muted);
+}
+.auth-footer a {
+  color: var(--clr-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.auth-footer a:hover { color: var(--clr-primary-dk); }
+
+/* ── Signup prompt strip (shown on login failure) ────────── */
+.signup-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+  padding: var(--sp-5) var(--sp-6);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg,
+    rgba(108,99,255,.12) 0%,
+    rgba(255,101,132,.12) 100%);
+  border: 2px solid var(--clr-primary);
+  text-align: center;
+  animation: bannerIn .4s cubic-bezier(.34,1.56,.64,1) both;
+}
+.signup-banner__icon  { font-size: 2rem; line-height: 1; }
+.signup-banner__title {
+  font-size: var(--fs-md);
+  font-weight: 800;
+  color: var(--clr-text);
+}
+.signup-banner__sub {
+  font-size: var(--fs-sm);
+  color: var(--clr-text-muted);
+  margin-bottom: var(--sp-1);
+}
+.signup-banner .btn--signup {
+  background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+  color: #fff;
+  border: none;
+  padding: .65em 2em;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 18px rgba(108,99,255,.35);
+  transition: transform var(--tr-fast), box-shadow var(--tr-fast);
+  letter-spacing: .01em;
+}
+.signup-banner .btn--signup:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(108,99,255,.45);
+}
+
+@keyframes bannerIn {
+  from { opacity: 0; transform: translateY(14px) scale(.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Shake animation for wrong credentials ───────────────── */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%     { transform: translateX(-8px); }
+  40%     { transform: translateX(8px); }
+  60%     { transform: translateX(-5px); }
+  80%     { transform: translateX(5px); }
+}
+.shake { animation: shake .45s ease both; }
+
+/* Role selector */
+.role-selector {
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3);
+}
+.role-option {
+  border: 2px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-4);
+  cursor: pointer;
+  transition: border-color var(--tr-fast), background var(--tr-fast);
+  text-align: center;
+  user-select: none;
+}
+.role-option input[type="radio"] { display: none; }
+.role-option .role-icon { font-size: 1.75rem; margin-bottom: var(--sp-2); }
+.role-option .role-name { font-weight: 700; font-size: var(--fs-sm); }
+.role-option .role-desc { font-size: var(--fs-xs); color: var(--clr-text-muted); }
+.role-option:has(input:checked) {
+  border-color: var(--clr-primary);
+  background: rgba(108,99,255,.07);
+}
+
+/* ── Mobile responsive ───────────────────────────────────────── */
+@media (max-width: 480px) {
+  .auth-wrapper {
+    padding: var(--sp-4);
+    align-items: flex-start;
+    padding-top: var(--sp-8);
+  }
+  .auth-card {
+    padding: var(--sp-5) var(--sp-4);
+    border-radius: var(--radius-md);
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+  .auth-card h1 { font-size: var(--fs-lg); }
+  .auth-card .subtitle { margin-bottom: var(--sp-6); }
+  .signup-banner { padding: var(--sp-4); }
+  .signup-banner .btn--signup { width: 100%; text-align: center; justify-content: center; }
+  .role-selector { grid-template-columns: 1fr; }
+}

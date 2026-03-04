@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up – UniGig</title>
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/pages/auth.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <h1>Join UniGig 🎓</h1>
+      <p class="subtitle">Create your free account in seconds</p>
+
+      <form id="register-form" class="auth-form" novalidate>
+
+        <!-- Role picker -->
+        <div class="form-group">
+          <label>I am a…</label>
+          <div class="role-selector">
+            <label class="role-option">
+              <input type="radio" name="role" value="STUDENT" />
+              <div class="role-icon">🎓</div>
+              <div class="role-name">Student</div>
+              <div class="role-desc">I'm looking for part-time work</div>
+            </label>
+            <label class="role-option">
+              <input type="radio" name="role" value="EMPLOYER" />
+              <div class="role-icon">🏢</div>
+              <div class="role-name">Employer</div>
+              <div class="role-desc">I want to hire students</div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com"
+                 autocomplete="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="uni_biz">University / Business name</label>
+          <input type="text" id="uni_biz" name="university_or_business"
+                 placeholder="State University or Acme Corp" />
+        </div>
+
+        <div class="form-group">
+          <label for="skills">Skills (comma-separated, students only)</label>
+          <input type="text" id="skills" name="skills"
+                 placeholder="JavaScript, Design, Marketing" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password"
+                 placeholder="At least 8 characters" autocomplete="new-password" required />
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password">Confirm password</label>
+          <input type="password" id="confirm-password" name="confirm_password"
+                 placeholder="••••••••" required />
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg w-full">Create Account</button>
+      </form>
+
+      <p class="auth-footer">
+        Already have an account? <a href="/login.html">Log in</a>
+      </p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container"><p>&copy; 2026 UniGig &ndash; Built for students, by students.</p></div>
+  </footer>
+
+  <script type="module" src="/js/pages/register.js"></script>
+</body>
+</html>
