@@ -17,17 +17,21 @@ document.getElementById('register-form').addEventListener('submit', async e => {
     return;
   }
 
-  const skillsRaw = document.getElementById('skills').value;
+  const skillsRaw = role === 'STUDENT' ? document.getElementById('skills').value : '';
   const skills = skillsRaw
     ? skillsRaw.split(',').map(s => s.trim()).filter(Boolean)
     : [];
 
+  const university_or_business = role === 'STUDENT'
+    ? document.getElementById('university').value.trim()
+    : document.getElementById('business_name').value.trim();
+
   const payload = {
     role,
-    name:                   document.getElementById('name').value.trim(),
-    email:                  document.getElementById('email').value.trim(),
-    password:               document.getElementById('password').value,
-    university_or_business: document.getElementById('uni_biz').value.trim(),
+    name:  document.getElementById('name').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    password: document.getElementById('password').value,
+    university_or_business,
     skills,
   };
 

@@ -48,16 +48,27 @@
                  autocomplete="email" required />
         </div>
 
-        <div class="form-group">
-          <label for="uni_biz">University / Business name</label>
-          <input type="text" id="uni_biz" name="university_or_business"
-                 placeholder="State University or Acme Corp" />
+        <!-- Student-only fields -->
+        <div id="student-fields" style="display:none">
+          <div class="form-group">
+            <label for="university">University name</label>
+            <input type="text" id="university" name="university"
+                   placeholder="e.g. State University" />
+          </div>
+          <div class="form-group">
+            <label for="skills">Skills <span style="font-weight:400;font-size:.85em;color:var(--color-muted)">(comma-separated)</span></label>
+            <input type="text" id="skills" name="skills"
+                   placeholder="JavaScript, Design, Marketing" />
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="skills">Skills (comma-separated, students only)</label>
-          <input type="text" id="skills" name="skills"
-                 placeholder="JavaScript, Design, Marketing" />
+        <!-- Employer-only fields -->
+        <div id="employer-fields" style="display:none">
+          <div class="form-group">
+            <label for="business_name">Business / Agency name</label>
+            <input type="text" id="business_name" name="business_name"
+                   placeholder="e.g. Acme Corp" />
+          </div>
         </div>
 
         <div class="form-group">
@@ -85,6 +96,15 @@
     <div class="container"><p>&copy; 2026 UniGig &ndash; Built for students, by students.</p></div>
   </footer>
 
+  <script>
+    document.querySelectorAll('input[name="role"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        const isStudent  = radio.value === 'STUDENT';
+        document.getElementById('student-fields').style.display  = isStudent  ? '' : 'none';
+        document.getElementById('employer-fields').style.display = !isStudent ? '' : 'none';
+      });
+    });
+  </script>
   <script type="module" src="/js/pages/register.js"></script>
 </body>
 </html>
