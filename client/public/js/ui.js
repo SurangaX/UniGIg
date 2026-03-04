@@ -32,7 +32,8 @@ export function renderNavbar() {
 
   if (!user) {
     links = `
-      <a href="/jobs.html">Browse Jobs</a>
+      <a href="/search.html">Search Jobs</a>
+      <a href="/jobs.html">Browse All</a>
     `;
     actions = `
       <a href="/login.html"    class="btn btn--ghost btn--sm">Log in</a>
@@ -40,7 +41,8 @@ export function renderNavbar() {
     `;
   } else if (user.role === 'STUDENT') {
     links = `
-      <a href="/jobs.html">Browse Jobs</a>
+      <a href="/search.html">Search Jobs</a>
+      <a href="/jobs.html">Browse All</a>
       <a href="/student-applications.html">My Applications</a>
     `;
     actions = `

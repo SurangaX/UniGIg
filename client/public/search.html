@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Jobs – UniGig</title>
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/pages/search.css" />
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <main>
+    <!-- ── Search header bar ── -->
+    <div class="search-hero">
+      <div class="container">
+        <form class="search-bar" id="search-form" role="search">
+          <div class="search-bar__wrap">
+            <svg class="search-bar__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input
+              id="s-query"
+              type="search"
+              placeholder="Job title, keyword, or company…"
+              aria-label="Search jobs"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button type="submit" class="search-bar__btn" aria-label="Search">Search</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- ── Toolbar: category chips + sort ── -->
+      <div class="search-toolbar">
+        <div class="search-chips" id="category-chips" role="group" aria-label="Filter by category">
+          <button class="chip chip--active" data-cat="">All</button>
+          <button class="chip" data-cat="Technology">Technology</button>
+          <button class="chip" data-cat="Marketing">Marketing</button>
+          <button class="chip" data-cat="Administration">Administration</button>
+          <button class="chip" data-cat="Food &amp; Beverage">Food &amp; Beverage</button>
+          <button class="chip" data-cat="Education">Education</button>
+          <button class="chip" data-cat="Design">Design</button>
+          <button class="chip" data-cat="Customer Service">Customer Service</button>
+          <button class="chip" data-cat="Logistics">Logistics</button>
+        </div>
+        <div class="search-sort">
+          <label for="s-sort" class="sr-only">Sort by</label>
+          <select id="s-sort">
+            <option value="newest">Newest first</option>
+            <option value="pay_high">Pay: High → Low</option>
+            <option value="pay_low">Pay: Low → High</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ── Second-row refinements ── -->
+    <div class="search-refine">
+        <input id="s-location" type="text" placeholder="📍 Location or Remote" autocomplete="off" />
+        <input id="s-pay-min"  type="number" placeholder="Min pay $" min="0" step="0.5" />
+        <input id="s-pay-max"  type="number" placeholder="Max pay $" min="0" step="0.5" />
+        <button type="button" id="clear-search" class="btn btn--ghost btn--sm">Clear all</button>
+      </div>
+
+
+      <!-- ── Results header ── -->
+      <div class="search-results-header">
+        <p class="search-results-meta" id="results-meta">&nbsp;</p>
+      </div>
+
+      <!-- ── Results grid ── -->
+      <div class="grid-2" id="results-grid"></div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>&copy; 2026 UniGig &ndash; Built for students, by students.</p></div>
+  </footer>
+
+  <script type="module" src="/js/pages/search.js"></script>
+</body>
+</html>

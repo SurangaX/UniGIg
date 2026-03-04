@@ -18,12 +18,15 @@
   align-items: center;
 }
 .navbar__brand {
-  font-size: var(--fs-lg);
+  font-size: 35px;
   font-weight: 800;
   color: var(--clr-primary);
   letter-spacing: -.02em;
   justify-self: start;
+  text-decoration: none;
 }
+.navbar__brand:hover { text-decoration: none; }
+
 .navbar__brand span { color: var(--clr-accent); }
 .navbar__links {
   display: flex; align-items: center; gap: var(--sp-1);

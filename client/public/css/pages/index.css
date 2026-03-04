@@ -8,12 +8,107 @@
   padding-block: var(--sp-16);
 }
 .hero h1 { font-size: var(--fs-2xl); font-weight: 900; line-height: 1.15; }
-.hero p   { font-size: var(--fs-lg); opacity: .9; max-width: 540px; margin: var(--sp-4) auto var(--sp-8); }
+.hero p   { font-size: var(--fs-lg); opacity: .9; max-width: 540px; margin: var(--sp-4) auto var(--sp-6); }
+
+/* ── Search bar ─────────────────────────────────────────────── */
+.hero__search {
+  max-width: 620px;
+  margin: 0 auto var(--sp-6);
+}
+.hero__search-wrap {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-pill);
+  padding: var(--sp-2) var(--sp-2) var(--sp-2) var(--sp-4);
+  gap: var(--sp-2);
+  transition: box-shadow var(--tr-base), border-color var(--tr-base), background var(--tr-base);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+.hero__search-wrap:focus-within {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2), 0 8px 32px rgba(0, 0, 0, 0.22);
+}
+.hero__search-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.75);
+  transition: color var(--tr-fast);
+}
+.hero__search-wrap:focus-within .hero__search-icon {
+  color: #fff;
+}
+.hero__search input[type="search"] {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: var(--fs-md);
+  font-weight: 500;
+  color: #fff;
+  padding: var(--sp-2) 0;
+  caret-color: #fff;
+}
+.hero__search input[type="search"]::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+/* hide native clear (×) button */
+.hero__search input[type="search"]::-webkit-search-cancel-button { display: none; }
+.hero__search-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+  background: #fff;
+  color: var(--clr-primary);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: var(--sp-2) var(--sp-5);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition: background var(--tr-fast), transform var(--tr-fast), box-shadow var(--tr-fast);
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+.hero__search-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--tr-fast);
+}
+.hero__search-btn:hover {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  transform: translateY(-1px);
+}
+.hero__search-btn:hover svg { transform: translateX(3px); }
+.hero__search-btn:active { transform: translateY(0); }
+
 .hero__cta { display: flex; gap: var(--sp-4); justify-content: center; flex-wrap: wrap; }
 .hero .btn--outline { border-color: #fff; color: #fff; }
 .hero .btn--outline:hover { background: #fff; color: var(--clr-primary); }
 .hero .btn--surface { background: #fff; color: var(--clr-primary); }
 .hero .btn--surface:hover { background: rgba(255,255,255,.85); }
+
+/* ── Recently Added Jobs ─────────────────────────────────────── */
+.recent-jobs {
+  padding-block: var(--sp-16);
+  background: var(--clr-bg-alt, var(--clr-bg));
+}
+.recent-jobs__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-8);
+}
+.recent-jobs__header h2 { font-size: var(--fs-xl); margin: 0; }
 
 .how-it-works { padding-block: var(--sp-16); }
 .how-it-works h2 { text-align: center; font-size: var(--fs-xl); margin-bottom: var(--sp-12); }
@@ -39,6 +134,15 @@
     padding-block: var(--sp-12);
   }
   .hero p { font-size: var(--fs-base); }
+  .hero__search { padding-inline: var(--sp-2); }
+  .hero__search-wrap {
+    flex-wrap: wrap;
+    border-radius: var(--radius-lg);
+    padding: var(--sp-3);
+    gap: var(--sp-3);
+  }
+  .hero__search input[type="search"] { width: 100%; }
+  .hero__search-btn { width: 100%; justify-content: center; border-radius: var(--radius-md); padding: var(--sp-3); }
   .hero__cta {
     flex-direction: column;
     align-items: stretch;
@@ -48,4 +152,6 @@
   .how-it-works { padding-block: var(--sp-8); }
   .how-it-works h2 { font-size: var(--fs-lg); margin-bottom: var(--sp-8); }
   .steps { grid-template-columns: 1fr; gap: var(--sp-6); }
+  .recent-jobs { padding-block: var(--sp-10); }
+  .recent-jobs__header h2 { font-size: var(--fs-lg); }
 }

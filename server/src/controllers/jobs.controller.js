@@ -88,6 +88,15 @@ async function createJob(req, res, next) {
       return res.status(400).json({ error: 'pay_type must be hour, day or job' });
     }
 
+    // Verify employer account still exists in DB (guards against stale JWTs after DB resets)
+    const employerCheck = await db.query(
+      'SELECT id FROM users WHERE id = $1 AND role = $2',
+      [req.user.id, 'EMPLOYER']
+    );
+    if (!employerCheck.rows.length) {
+      return res.status(401).json({ error: 'Employer account not found. Please log out and log in again.' });
+    }
+
     const result = await db.query(
       `INSERT INTO jobs (employer_id, title, category, description, location, pay_amount, pay_type, schedule_text)
        VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
@@ -97,6 +106,10 @@ async function createJob(req, res, next) {
 
     res.status(201).json(result.rows[0]);
   } catch (err) {
+    // PostgreSQL FK violation – employer_id not in users table
+    if (err.code === '23503') {
+      return res.status(401).json({ error: 'Employer account not found. Please log out and log in again.' });
+    }
     next(err);
   }
 }

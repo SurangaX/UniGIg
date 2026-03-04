@@ -15,9 +15,37 @@
     <div class="container">
       <h1>Find Part-Time Gigs<br>Built for Students 🎓</h1>
       <p>UniGig connects university students with flexible, paid opportunities from local and remote employers.</p>
+      <form class="hero__search" id="hero-search-form" role="search">
+        <div class="hero__search-wrap">
+          <svg class="hero__search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input
+            id="hero-search-input"
+            type="search"
+            placeholder=" Job title, keyword, or company…"
+            aria-label="Search jobs"
+            autocomplete="off"
+          />
+          <button type="submit" class="hero__search-btn" aria-label="Search">
+            <span>Search</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </form>
       <div class="hero__cta">
-        <a href="/jobs.html"   class="btn btn--surface btn--lg">Browse Jobs</a>
+        <a href="/jobs.html" class="btn btn--outline btn--lg">Browse All Jobs</a>
         <a href="/login.html" class="btn btn--outline btn--lg">Get Started Free</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="recent-jobs">
+    <div class="container">
+      <div class="recent-jobs__header">
+        <h2>Recently Added Jobs</h2>
+        <a href="/jobs.html" class="btn btn--ghost btn--sm">View all →</a>
+      </div>
+      <div class="grid-2" id="recent-jobs-grid">
+        <!-- filled by index.js -->
       </div>
     </div>
   </section>

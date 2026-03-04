@@ -66,6 +66,11 @@ async function request(method, path, body = null, options = {}) {
     if (!res.ok) {
       const err = new Error(data.error || `HTTP ${res.status}`);
       err.status = res.status;
+      // Auto-logout if server says the account no longer exists
+      if (res.status === 401 && getToken() && !path.startsWith('/auth')) {
+        removeToken();
+        window.location.href = '/login.html';
+      }
       throw err;
     }
     return data;
