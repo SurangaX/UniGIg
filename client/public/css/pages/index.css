@@ -52,12 +52,13 @@
   font-size: var(--fs-md);
   font-weight: 500;
   color: #fff;
-  padding: var(--sp-2) 0;
+  padding: var(--sp-2) 0 var(--sp-2) var(--sp-3);
   caret-color: #fff;
 }
 .hero__search input[type="search"]::placeholder {
   color: rgba(255, 255, 255, 0.6);
   font-weight: 400;
+  padding-left: var(--sp-1);
 }
 /* hide native clear (×) button */
 .hero__search input[type="search"]::-webkit-search-cancel-button { display: none; }
@@ -100,7 +101,9 @@
 /* ── Recently Added Jobs ─────────────────────────────────────── */
 .recent-jobs {
   padding-block: var(--sp-16);
-  background: var(--clr-bg-alt, var(--clr-bg));
+  background: linear-gradient(160deg, rgba(108, 99, 255, 0.07) 0%, rgba(255, 101, 132, 0.05) 100%);
+  border-top: 2px solid rgba(108, 99, 255, 0.18);
+  border-bottom: 2px solid rgba(108, 99, 255, 0.12);
 }
 .recent-jobs__header {
   display: flex;
@@ -108,7 +111,12 @@
   justify-content: space-between;
   margin-bottom: var(--sp-8);
 }
-.recent-jobs__header h2 { font-size: var(--fs-xl); margin: 0; }
+.recent-jobs__header h2 {
+  font-size: var(--fs-xl);
+  margin: 0;
+  padding-left: var(--sp-3);
+  border-left: 4px solid var(--clr-primary);
+}
 
 .how-it-works { padding-block: var(--sp-16); }
 .how-it-works h2 { text-align: center; font-size: var(--fs-xl); margin-bottom: var(--sp-12); }
@@ -141,7 +149,7 @@
     padding: var(--sp-3);
     gap: var(--sp-3);
   }
-  .hero__search input[type="search"] { width: 100%; }
+  .hero__search input[type="search"] { width: 100%;}
   .hero__search-btn { width: 100%; justify-content: center; border-radius: var(--radius-md); padding: var(--sp-3); }
   .hero__cta {
     flex-direction: column;

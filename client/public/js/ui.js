@@ -27,11 +27,16 @@ export function renderNavbar() {
 
   const user = api.getUser();
 
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const isHome = currentPage === 'index.html' || currentPage === '';
+  const homeLink = isHome ? '' : `<a href="/index.html">Home</a>`;
+
   let links = '';
   let actions = '';
 
   if (!user) {
     links = `
+      ${homeLink}
       <a href="/search.html">Search Jobs</a>
       <a href="/jobs.html">Browse All</a>
     `;
@@ -41,6 +46,7 @@ export function renderNavbar() {
     `;
   } else if (user.role === 'STUDENT') {
     links = `
+      ${homeLink}
       <a href="/search.html">Search Jobs</a>
       <a href="/jobs.html">Browse All</a>
       <a href="/student-applications.html">My Applications</a>
@@ -51,6 +57,7 @@ export function renderNavbar() {
     `;
   } else if (user.role === 'EMPLOYER') {
     links = `
+      ${homeLink}
       <a href="/employer-jobs.html">My Jobs</a>
       <a href="/employer-new-job.html">Post a Job</a>
     `;
