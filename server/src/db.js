@@ -2,18 +2,20 @@
 require('dotenv').config();
 const { Pool } = require('pg');
 
-// Railway automatically injects DATABASE_URL when a Postgres service is linked
-// to the same project. That URL uses Railway's private network (no public
-// internet hop), so connections are fast and free of egress charges.
-const connectionString = process.env.DATABASE_URL;
+const rawUrl = process.env.DATABASE_URL;
 
-if (!connectionString) {
-  throw new Error('DATABASE_URL environment variable is not set. ' +
-    'Link a Railway Postgres service to this project or add it to your .env file.');
+if (!rawUrl) {
+  throw new Error('DATABASE_URL environment variable is not set.');
 }
 
-// Railway Postgres requires SSL even on the private network.
-// Keep min:2 so warm connections are ready before the first HTTP request.
+// The pg driver does not understand channel_binding or sslmode query params –
+// strip them and enforce SSL via the pool config instead.
+const connectionString = rawUrl
+  .replace(/[?&]sslmode=[^&]*/g, '')
+  .replace(/[?&]channel_binding=[^&]*/g, '')
+  .replace(/\?&/, '?')
+  .replace(/[?&]$/, '');
+
 const pool = new Pool({
   connectionString,
   ssl: { rejectUnauthorized: false },
