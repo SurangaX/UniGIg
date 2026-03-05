@@ -36,6 +36,11 @@ document.getElementById('register-form').addEventListener('submit', async e => {
     skills,
   };
 
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+    showToast('Please enter a valid email address.', 'error');
+    return;
+  }
+
   if (payload.password !== document.getElementById('confirm-password').value) {
     showToast('Passwords do not match', 'error');
     return;

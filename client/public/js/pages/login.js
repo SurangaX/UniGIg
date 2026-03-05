@@ -48,6 +48,11 @@ form.addEventListener('submit', async e => {
     showInlineError('Please enter your email address.');
     return;
   }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    document.getElementById('email').classList.add('field-error');
+    showInlineError('Please enter a valid email address.');
+    return;
+  }
   if (!pass) {
     document.getElementById('password').classList.add('field-error');
     showInlineError('Please enter your password.');
