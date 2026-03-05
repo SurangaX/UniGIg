@@ -97,20 +97,33 @@ async function updateApplication(req, res, next) {
     if (app.employer_id !== req.user.id) return res.status(403).json({ error: 'Not your job' });
     if (app.status !== 'pending') return res.status(400).json({ error: 'Application already decided' });
 
-    if (status === 'accepted') {
-      // Business rule: accept only one → close job, reject all other pending
-      await db.query(
-        `UPDATE applications SET status='rejected'
-         WHERE job_id=$1 AND id!=$2 AND status='pending'`,
-        [app.job_id, appId]
-      );
-      await db.query(`UPDATE jobs SET status='closed' WHERE id=$1`, [app.job_id]);
-    }
-
+    // Accept/reject this application
     const result = await db.query(
       `UPDATE applications SET status=$1 WHERE id=$2 RETURNING *`,
       [status, appId]
     );
+
+    if (status === 'accepted') {
+      // Fetch job to get workers_needed
+      const jobRes = await db.query('SELECT * FROM jobs WHERE id=$1', [app.job_id]);
+      const job = jobRes.rows[0];
+
+      // Count total accepted applications for this job (including the one just accepted)
+      const countRes = await db.query(
+        `SELECT COUNT(*) FROM applications WHERE job_id=$1 AND status='accepted'`,
+        [app.job_id]
+      );
+      const acceptedCount = parseInt(countRes.rows[0].count, 10);
+
+      if (acceptedCount >= job.workers_needed) {
+        // Quota reached → close the job and reject remaining pending applications
+        await db.query(
+          `UPDATE applications SET status='rejected' WHERE job_id=$1 AND status='pending'`,
+          [app.job_id]
+        );
+        await db.query(`UPDATE jobs SET status='closed' WHERE id=$1`, [app.job_id]);
+      }
+    }
 
     res.json(result.rows[0]);
   } catch (err) {

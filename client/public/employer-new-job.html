@@ -83,6 +83,14 @@
                   <input type="text" id="schedule_text" name="schedule_text"
                          placeholder="e.g. Weekends 9am-3pm, Flexible 10-15hrs/week" />
                 </div>
+                <div class="form-group">
+                  <label for="workers_needed">Workers needed *</label>
+                  <input type="number" id="workers_needed" name="workers_needed" min="1" step="1" value="1" required
+                         placeholder="1" />
+                  <span class="form-hint" style="font-size:var(--fs-xs);color:var(--clr-text-muted)">
+                    The job closes automatically once this many applicants are accepted.
+                  </span>
+                </div>
 
                 <div style="display:flex;gap:var(--sp-3)">
                   <button type="submit" class="btn btn--primary btn--lg">Post Job</button>

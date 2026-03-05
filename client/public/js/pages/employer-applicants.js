@@ -21,10 +21,14 @@ async function load() {
       api.get(`/employer/jobs/${jobId}/applicants`),
     ]);
 
+    const acceptedCount = applicants.filter(a => a.status === 'accepted').length;
+    const workersNeeded = job.workers_needed ?? 1;
+
     document.getElementById('job-title').textContent  = job.title;
     document.getElementById('job-status').className   = `badge badge--${job.status}`;
     document.getElementById('job-status').textContent = job.status;
-    document.getElementById('app-count').textContent  = `${applicants.length} applicant${applicants.length !== 1 ? 's' : ''}`;
+    document.getElementById('app-count').textContent  =
+      `${applicants.length} applicant${applicants.length !== 1 ? 's' : ''} · ${acceptedCount}/${workersNeeded} hired`;
 
     if (!applicants.length) {
       container.innerHTML = `<div class="empty-state"><h3>No applications yet</h3></div>`;
@@ -59,8 +63,12 @@ async function load() {
     // Accept handlers
     container.querySelectorAll('.accept-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
+        const remaining = workersNeeded - acceptedCount - 1;
+        const closeMsg  = remaining <= 0
+          ? ' This will close the job and reject all remaining pending applicants.'
+          : ` ${remaining} more worker${remaining !== 1 ? 's' : ''} can still be accepted before the job closes.`;
         const confirmed = await showConfirm('Accept Applicant',
-          `Accept ${btn.dataset.name}? This will close the job and reject all other pending applicants.`);
+          `Accept ${btn.dataset.name}?${closeMsg}`);
         if (!confirmed) return;
         await updateApplication(btn.dataset.id, 'accepted');
       });

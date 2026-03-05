@@ -30,6 +30,7 @@ document.getElementById('register-form').addEventListener('submit', async e => {
     role,
     name:  document.getElementById('name').value.trim(),
     email: document.getElementById('email').value.trim(),
+    nic:   document.getElementById('nic').value.trim(),
     password: document.getElementById('password').value,
     university_or_business,
     skills,

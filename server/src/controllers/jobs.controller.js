@@ -82,10 +82,15 @@ async function getJob(req, res, next) {
 // ── POST /api/jobs  (EMPLOYER) ─────────────────────────────────────────
 async function createJob(req, res, next) {
   try {
-    const { title, category, description, location, pay_amount, pay_type, schedule_text } = req.body;
+    const { title, category, description, location, pay_amount, pay_type, schedule_text, workers_needed } = req.body;
 
     if (!['hour', 'day', 'job'].includes(pay_type)) {
       return res.status(400).json({ error: 'pay_type must be hour, day or job' });
+    }
+
+    const wn = workers_needed !== undefined ? parseInt(workers_needed, 10) : 1;
+    if (isNaN(wn) || wn < 1) {
+      return res.status(400).json({ error: 'workers_needed must be a positive integer' });
     }
 
     // Verify employer account still exists in DB (guards against stale JWTs after DB resets)
@@ -98,10 +103,10 @@ async function createJob(req, res, next) {
     }
 
     const result = await db.query(
-      `INSERT INTO jobs (employer_id, title, category, description, location, pay_amount, pay_type, schedule_text)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
+      `INSERT INTO jobs (employer_id, title, category, description, location, pay_amount, pay_type, schedule_text, workers_needed)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
        RETURNING *`,
-      [req.user.id, title, category, description, location, pay_amount, pay_type, schedule_text || null]
+      [req.user.id, title, category, description, location, pay_amount, pay_type, schedule_text || null, wn]
     );
 
     res.status(201).json(result.rows[0]);
@@ -121,17 +126,24 @@ async function updateJob(req, res, next) {
     const job = await _ownerGuard(id, req.user.id, res);
     if (!job) return;
 
-    const { title, category, description, location, pay_amount, pay_type, schedule_text } = req.body;
+    const { title, category, description, location, pay_amount, pay_type, schedule_text, workers_needed } = req.body;
 
     if (pay_type && !['hour', 'day', 'job'].includes(pay_type)) {
       return res.status(400).json({ error: 'pay_type must be hour, day or job' });
     }
 
+    let wn = job.workers_needed;
+    if (workers_needed !== undefined) {
+      wn = parseInt(workers_needed, 10);
+      if (isNaN(wn) || wn < 1)
+        return res.status(400).json({ error: 'workers_needed must be a positive integer' });
+    }
+
     const result = await db.query(
       `UPDATE jobs
        SET title=$1, category=$2, description=$3, location=$4,
-           pay_amount=$5, pay_type=$6, schedule_text=$7
-       WHERE id=$8
+           pay_amount=$5, pay_type=$6, schedule_text=$7, workers_needed=$8
+       WHERE id=$9
        RETURNING *`,
       [
         title         ?? job.title,
@@ -141,6 +153,7 @@ async function updateJob(req, res, next) {
         pay_amount    ?? job.pay_amount,
         pay_type      ?? job.pay_type,
         schedule_text !== undefined ? schedule_text : job.schedule_text,
+        wn,
         id
       ]
     );

@@ -16,10 +16,14 @@ function signToken(user) {
 
 async function register(req, res, next) {
   try {
-    const { role, name, email, password, university_or_business, skills } = req.body;
+    const { role, name, email, password, university_or_business, skills, nic } = req.body;
 
     if (!['STUDENT', 'EMPLOYER'].includes(role)) {
       return res.status(400).json({ error: 'Role must be STUDENT or EMPLOYER' });
+    }
+
+    if (!nic || !nic.trim()) {
+      return res.status(400).json({ error: 'NIC is required' });
     }
 
     // Check duplicate email
@@ -28,14 +32,20 @@ async function register(req, res, next) {
       return res.status(409).json({ error: 'Email already registered' });
     }
 
+    // Check duplicate NIC
+    const nicExists = await db.query('SELECT id FROM users WHERE nic = $1', [nic.trim()]);
+    if (nicExists.rows.length) {
+      return res.status(409).json({ error: 'NIC already registered' });
+    }
+
     const password_hash = await bcrypt.hash(password, SALT_ROUNDS);
     const skillsArray   = Array.isArray(skills) ? skills : [];
 
     const result = await db.query(
-      `INSERT INTO users (role, name, email, password_hash, university_or_business, skills)
-       VALUES ($1,$2,$3,$4,$5,$6)
-       RETURNING id, role, name, email, university_or_business, skills, created_at`,
-      [role, name.trim(), email.toLowerCase().trim(), password_hash, university_or_business || null, skillsArray]
+      `INSERT INTO users (role, name, email, password_hash, university_or_business, nic, skills)
+       VALUES ($1,$2,$3,$4,$5,$6,$7)
+       RETURNING id, role, name, email, university_or_business, nic, skills, created_at`,
+      [role, name.trim(), email.toLowerCase().trim(), password_hash, university_or_business || null, nic.trim(), skillsArray]
     );
 
     const user  = result.rows[0];

@@ -18,6 +18,7 @@ CREATE TABLE users (
     email                 VARCHAR(254) NOT NULL UNIQUE,
     password_hash         TEXT         NOT NULL,
     university_or_business VARCHAR(200),
+    nic                   VARCHAR(20)  UNIQUE,
     skills                TEXT[]       DEFAULT '{}',
     created_at            TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
@@ -32,6 +33,7 @@ CREATE TABLE jobs (
     pay_amount    NUMERIC(10,2) NOT NULL CHECK (pay_amount >= 0),
     pay_type      VARCHAR(10)  NOT NULL CHECK (pay_type IN ('hour','day','job')),
     schedule_text VARCHAR(300),
+    workers_needed SMALLINT    NOT NULL DEFAULT 1 CHECK (workers_needed >= 1),
     status        VARCHAR(10)  NOT NULL DEFAULT 'open' CHECK (status IN ('open','closed')),
     created_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
