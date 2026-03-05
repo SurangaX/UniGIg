@@ -71,7 +71,7 @@ function resultCardHTML(job) {
         <p class="job-card__employer">${escHtml(job.employer_name)}</p>
         <div class="job-card__meta">
           <span>📍 ${escHtml(job.location)}</span>
-          <span>💰 $${Number(job.pay_amount).toFixed(2)} / ${escHtml(job.pay_type)}</span>
+          <span>💰 LKR ${Number(job.pay_amount).toFixed(2)} / ${escHtml(job.pay_type)}</span>
           ${job.schedule_text ? `<span>🕐 ${escHtml(job.schedule_text)}</span>` : ''}
         </div>
       </div>
