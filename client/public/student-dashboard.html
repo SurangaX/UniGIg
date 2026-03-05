@@ -28,6 +28,10 @@
             <a href="/student-profile.html">Edit Profile</a>
             <a href="/jobs.html">Browse Jobs</a>
           </nav>
+          <div style="margin-top:var(--sp-6);display:flex;flex-direction:column;gap:var(--sp-2)">
+            <button id="btn-edit-account" class="btn btn--outline btn--sm" style="width:100%">Edit Account</button>
+            <button id="btn-delete-account" class="btn btn--sm" style="width:100%;background:var(--clr-error,#e53e3e);color:#fff;border:none">Delete Account</button>
+          </div>
         </aside>
 
         <!-- Main content -->
@@ -80,5 +84,45 @@
   </footer>
 
   <script type="module" src="/js/pages/student-dashboard.js"></script>
+
+  <!-- Edit Account Modal -->
+  <div id="edit-account-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="edit-modal-title">
+    <div class="modal">
+      <h2 id="edit-modal-title">Edit Account Details</h2>
+      <form id="edit-account-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="edit-name">Full Name</label>
+          <input class="form-input" type="text" id="edit-name" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="edit-email">Email</label>
+          <input class="form-input" type="email" id="edit-email" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="edit-university">University</label>
+          <input class="form-input" type="text" id="edit-university" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="edit-skills">Skills (comma-separated)</label>
+          <input class="form-input" type="text" id="edit-skills" placeholder="e.g. JavaScript, Python" />
+        </div>
+        <hr style="margin:var(--sp-4) 0;border-color:var(--clr-border)" />
+        <p style="font-size:var(--fs-sm);color:var(--clr-text-muted);margin-bottom:var(--sp-3)">Leave password fields blank to keep your current password.</p>
+        <div class="form-group">
+          <label class="form-label" for="edit-current-password">Current Password</label>
+          <input class="form-input" type="password" id="edit-current-password" autocomplete="current-password" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="edit-new-password">New Password</label>
+          <input class="form-input" type="password" id="edit-new-password" autocomplete="new-password" />
+        </div>
+        <div id="edit-error" style="color:var(--clr-error,#e53e3e);font-size:var(--fs-sm);margin-bottom:var(--sp-2);display:none"></div>
+        <div class="modal__actions">
+          <button type="button" class="btn btn--ghost" id="edit-cancel">Cancel</button>
+          <button type="submit" class="btn btn--primary" id="edit-submit">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>

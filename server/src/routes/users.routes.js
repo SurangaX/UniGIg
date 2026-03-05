@@ -12,6 +12,9 @@ router.get('/users/:id', usersCtrl.getUser);
 // PUT  /api/users/me
 router.put('/users/me', authenticate, usersCtrl.updateMe);
 
+// DELETE /api/users/me
+router.delete('/users/me', authenticate, usersCtrl.deleteMe);
+
 // GET  /api/users/:id/reviews
 router.get('/users/:id/reviews', reviewsCtrl.getUserReviews);
 
