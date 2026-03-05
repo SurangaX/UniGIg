@@ -38,35 +38,57 @@
 
     <div class="container">
 
-      <!-- ── Toolbar: category chips + sort ── -->
-      <div class="search-toolbar">
-        <div class="search-chips" id="category-chips" role="group" aria-label="Filter by category">
-          <button class="chip chip--active" data-cat="">All</button>
-          <button class="chip" data-cat="Technology">Technology</button>
-          <button class="chip" data-cat="Marketing">Marketing</button>
-          <button class="chip" data-cat="Administration">Administration</button>
-          <button class="chip" data-cat="Food &amp; Beverage">Food &amp; Beverage</button>
-          <button class="chip" data-cat="Education">Education</button>
-          <button class="chip" data-cat="Design">Design</button>
-          <button class="chip" data-cat="Customer Service">Customer Service</button>
-          <button class="chip" data-cat="Logistics">Logistics</button>
-        </div>
-        <div class="search-sort">
-          <label for="s-sort" class="sr-only">Sort by</label>
-          <select id="s-sort">
-            <option value="newest">Newest first</option>
-            <option value="pay_high">Pay: High → Low</option>
-            <option value="pay_low">Pay: Low → High</option>
+      <!-- ── Filter panel: chips + sort + refinements ── -->
+      <div class="search-filter-panel">
+        <div class="search-toolbar">
+          <div class="search-chips" id="category-chips" role="group" aria-label="Filter by category">
+            <button class="chip chip--active" data-cat="">All</button>
+            <button class="chip" data-cat="Technology">Technology</button>
+            <button class="chip" data-cat="Marketing">Marketing</button>
+            <button class="chip" data-cat="Administration">Administration</button>
+            <button class="chip" data-cat="Food &amp; Beverage">Food &amp; Beverage</button>
+            <button class="chip" data-cat="Education">Education</button>
+            <button class="chip" data-cat="Design">Design</button>
+            <button class="chip" data-cat="Customer Service">Customer Service</button>
+            <button class="chip" data-cat="Logistics">Logistics</button>
+          </div>
+          <!-- Mobile category dropdown (hidden on desktop) -->
+          <select id="category-select" class="category-select" aria-label="Filter by category">
+            <option value="">All Categories</option>
+            <option value="Technology">Technology</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Administration">Administration</option>
+            <option value="Food &amp; Beverage">Food &amp; Beverage</option>
+            <option value="Education">Education</option>
+            <option value="Design">Design</option>
+            <option value="Customer Service">Customer Service</option>
+            <option value="Logistics">Logistics</option>
           </select>
+          <div class="search-sort">
+            <label for="s-sort" class="sr-only">Sort by</label>
+            <select id="s-sort">
+              <option value="newest">Newest first</option>
+              <option value="pay_high">Pay: High → Low</option>
+              <option value="pay_low">Pay: Low → High</option>
+            </select>
+          </div>
         </div>
-      </div>
 
-      <!-- ── Second-row refinements ── -->
-    <div class="search-refine">
-        <input id="s-location" type="text" placeholder="📍 Location or Remote" autocomplete="off" />
-        <input id="s-pay-min"  type="number" placeholder="Min pay $" min="0" step="0.5" />
-        <input id="s-pay-max"  type="number" placeholder="Max pay $" min="0" step="0.5" />
-        <button type="button" id="clear-search" class="btn btn--ghost btn--sm">Clear all</button>
+        <div class="search-refine">
+          <div class="search-refine__field">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <input id="s-location" type="text" placeholder="Location or Remote" autocomplete="off" />
+          </div>
+          <div class="search-refine__field">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <input id="s-pay-min" type="number" placeholder="Min pay" min="0" step="0.5" />
+          </div>
+          <div class="search-refine__field">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <input id="s-pay-max" type="number" placeholder="Max pay" min="0" step="0.5" />
+          </div>
+          <button type="button" id="clear-search" class="btn btn--ghost btn--sm">Clear all</button>
+        </div>
       </div>
 
 

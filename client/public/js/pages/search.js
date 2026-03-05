@@ -14,6 +14,7 @@ const payMinInput   = document.getElementById('s-pay-min');
 const payMaxInput   = document.getElementById('s-pay-max');
 const sortSelect    = document.getElementById('s-sort');
 const chipsEl       = document.getElementById('category-chips');
+const catSelect     = document.getElementById('category-select');
 const resultsMeta   = document.getElementById('results-meta');
 const grid          = document.getElementById('results-grid');
 const clearBtn      = document.getElementById('clear-search');
@@ -36,6 +37,7 @@ let debounceTimer;
     chipsEl.querySelectorAll('.chip').forEach(c => {
       c.classList.toggle('chip--active', c.dataset.cat === activeCategory);
     });
+    catSelect.value = activeCategory;
   }
 })();
 
@@ -145,6 +147,16 @@ chipsEl.addEventListener('click', e => {
   chipsEl.querySelectorAll('.chip').forEach(c => c.classList.remove('chip--active'));
   chip.classList.add('chip--active');
   activeCategory = chip.dataset.cat;
+  catSelect.value = activeCategory;
+  doSearch();
+});
+
+// ── Category dropdown (mobile) ──────────────────────────────────
+catSelect.addEventListener('change', () => {
+  activeCategory = catSelect.value;
+  chipsEl.querySelectorAll('.chip').forEach(c =>
+    c.classList.toggle('chip--active', c.dataset.cat === activeCategory)
+  );
   doSearch();
 });
 
@@ -176,6 +188,7 @@ clearBtn.addEventListener('click', () => {
   payMaxInput.value   = '';
   sortSelect.value    = 'newest';
   activeCategory      = '';
+  catSelect.value     = '';
   chipsEl.querySelectorAll('.chip').forEach(c =>
     c.classList.toggle('chip--active', c.dataset.cat === '')
   );
