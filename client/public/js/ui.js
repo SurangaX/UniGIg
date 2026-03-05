@@ -245,7 +245,7 @@ export function jobCardHTML(job) {
         <p class="job-card__employer">${escHtml(job.employer_name)}</p>
         <div class="job-card__meta">
           <span>📍 ${escHtml(job.location)}</span>
-          <span>💰 $${Number(job.pay_amount).toFixed(2)} / ${escHtml(job.pay_type)}</span>
+          <span>💰 LKR ${Number(job.pay_amount).toFixed(2)} / ${escHtml(job.pay_type)}</span>
           ${job.schedule_text ? `<span>🕐 ${escHtml(job.schedule_text)}</span>` : ''}
         </div>
       </div>
@@ -285,7 +285,7 @@ export function timeAgo(dateStr) {
 }
 
 export function formatPay(amount, type) {
-  return `$${Number(amount).toFixed(2)} / ${type}`;
+  return `LKR ${Number(amount).toFixed(2)} / ${type}`;
 }
 
 /** Set all named form fields from an object */
