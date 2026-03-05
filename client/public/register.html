@@ -23,7 +23,7 @@
           <label>I am a…</label>
           <div class="role-selector">
             <label class="role-option">
-              <input type="radio" name="role" value="STUDENT" />
+              <input type="radio" name="role" value="STUDENT" checked />
               <div class="role-icon">🎓</div>
               <div class="role-name">Student</div>
               <div class="role-desc">I'm looking for part-time work</div>
@@ -54,7 +54,7 @@
         </div>
 
         <!-- Student-only fields -->
-        <div id="student-fields" style="display:none">
+        <div id="student-fields" style="display:flex;flex-direction:column;gap:var(--sp-4)">
           <div class="form-group">
             <label for="university">University name</label>
             <input type="text" id="university" name="university"
@@ -102,10 +102,14 @@
   </footer>
 
   <script>
+    // Show student fields by default (STUDENT is pre-selected)
+    document.getElementById('student-fields').style.display = 'flex';
+    document.getElementById('employer-fields').style.display = 'none';
+
     document.querySelectorAll('input[name="role"]').forEach(radio => {
       radio.addEventListener('change', () => {
         const isStudent  = radio.value === 'STUDENT';
-        document.getElementById('student-fields').style.display  = isStudent  ? '' : 'none';
+        document.getElementById('student-fields').style.display  = isStudent  ? 'flex' : 'none';
         document.getElementById('employer-fields').style.display = !isStudent ? '' : 'none';
       });
     });
